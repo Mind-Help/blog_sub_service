@@ -25,7 +25,7 @@ app.post("/sub", async (req, res) => {
   const subs = await redis_client.hGet("blog_subs", email);
 
   if (subs) return res.status(400).json({ message: "email ja cadastrado" });
-  if (email_regex.test(email) == false || !email)
+  if (email_regex.test(email) || !email)
     return res.status(400).json({ message: "email invalido" });
   if (name.length <= 4 || !name)
     return res.status(400).json({ message: "nome invalido" });
